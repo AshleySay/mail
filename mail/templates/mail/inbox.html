@@ -13,10 +13,22 @@
 
     <div id="emails-view">
     </div>
+    <table id="emails-table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">From</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Timestamp</th>
+            </tr>
+        </thead>
+        <tbody id="emails-body">
+        </tbody>
+    </table>
+
 
     <div id="compose-view">
         <h3>New Email</h3>
-        <form id="compose-form">
+        <form id="compose-form" method="POST">
             <div class="form-group">
                 From: <input disabled class="form-control" value="{{ request.user.email }}">
             </div>
@@ -27,11 +39,25 @@
                 <input class="form-control" id="compose-subject" placeholder="Subject">
             </div>
             <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
-            <input type="submit" class="btn btn-primary"/>
+            <input type="submit" id="send" class="btn btn-primary"/>
         </form>
+    </div>
+
+    <div id="open-email-view">
+        <div class="card border-primary mb-3">
+            <div id="email-sender" class="card-header"></div>
+            <div id="email-subject" class="card-header"></div>
+            <div class="card-body text-primary">
+              <p id="email-body" class="card-text"></p>
+              <input type="submit" id="Archive" value="Archive" class="btn btn-primary"/>
+              <input type="submit" id="UnArchive" value="UnArchive" class="btn btn-primary"/>
+              <input type="submit" id="reply" value="Reply" class="btn btn-primary"/>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block script %}
     <script src="{% static 'mail/inbox.js' %}"></script>
+
 {% endblock %}
